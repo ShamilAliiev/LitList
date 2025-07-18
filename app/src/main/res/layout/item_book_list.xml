@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Theme.LitList.Card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="2dp"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground">
@@ -34,7 +33,8 @@
                     android:layout_height="wrap_content"
                     android:text="List Name"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface" />
 
                 <TextView
                     android:id="@+id/list_description"
@@ -43,7 +43,7 @@
                     android:layout_marginTop="4dp"
                     android:text="List Description"
                     android:textSize="14sp"
-                    android:textColor="?android:attr/textColorSecondary"
+                    android:textColor="?attr/colorOnSurfaceVariant"
                     android:maxLines="2"
                     android:ellipsize="end"
                     android:visibility="gone" />
