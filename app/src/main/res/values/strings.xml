@@ -1,3 +1,90 @@
 <resources>
     <string name="app_name">LitList</string>
+    
+    <!-- Navigation -->
+    <string name="navigation_drawer_open">Otwórz menu nawigacji</string>
+    <string name="navigation_drawer_close">Zamknij menu nawigacji</string>
+    <string name="nav_header_desc">Nagłówek nawigacji</string>
+    <string name="nav_header_subtitle">Twoja biblioteka książek</string>
+    
+    <!-- Navigation Menu -->
+    <string name="nav_home">Strona główna</string>
+    <string name="nav_books">Książki</string>
+    <string name="nav_lists">Listy</string>
+    <string name="nav_profile">Profil</string>
+    
+    <!-- Home Fragment -->
+    <string name="home_welcome">Witaj w LitList!</string>
+    <string name="home_description">Organizuj swoje czytanie, śledź postępy i odkrywaj nowe książki.</string>
+    <string name="home_stats_title">Twoje statystyki</string>
+    <string name="home_recent_books">Ostatnio dodane</string>
+    <string name="currently_reading">Obecnie czytam</string>
+    <string name="want_to_read">Do przeczytania</string>
+    <string name="already_read">Przeczytane</string>
+    
+    <!-- Books Fragment -->
+    <string name="books_title">Moje książki</string>
+    <string name="add_book">Dodaj książkę</string>
+    <string name="no_books">Nie masz jeszcze żadnych książek. Dodaj pierwszą!</string>
+    <string name="search_books">Szukaj książek</string>
+    
+    <!-- Lists Fragment -->
+    <string name="lists_title">Moje listy</string>
+    <string name="default_lists">Domyślne listy</string>
+    <string name="custom_lists">Niestandardowe listy</string>
+    <string name="create_list">Utwórz listę</string>
+    <string name="no_custom_lists">Nie masz jeszcze niestandardowych list.</string>
+    
+    <!-- Profile Fragment -->
+    <string name="profile_title">Profil</string>
+    <string name="reading_goals">Cele czytelnicze</string>
+    <string name="reading_statistics">Statystyki czytania</string>
+    <string name="books_this_month">Książki w tym miesiącu</string>
+    <string name="pages_read">Przeczytane strony</string>
+    <string name="reading_streak">Seria czytania</string>
+    <string name="days">dni</string>
+    
+    <!-- Book Details -->
+    <string name="book_details">Szczegóły książki</string>
+    <string name="author">Autor</string>
+    <string name="pages">Strony</string>
+    <string name="progress">Postęp</string>
+    <string name="description">Opis</string>
+    <string name="notes">Notatki</string>
+    <string name="bookmarks">Zakładki</string>
+    <string name="add_to_list">Dodaj do listy</string>
+    <string name="update_progress">Aktualizuj postęp</string>
+    <string name="add_note">Dodaj notatkę</string>
+    <string name="add_bookmark">Dodaj zakładkę</string>
+    
+    <!-- Add Book -->
+    <string name="add_book_title">Dodaj książkę</string>
+    <string name="book_title">Tytuł książki</string>
+    <string name="book_author">Autor książki</string>
+    <string name="book_isbn">ISBN (opcjonalnie)</string>
+    <string name="book_pages_count">Liczba stron</string>
+    <string name="book_description">Opis książki</string>
+    <string name="save_book">Zapisz książkę</string>
+    <string name="title_required">Tytuł jest wymagany</string>
+    <string name="author_required">Autor jest wymagany</string>
+    
+    <!-- Common -->
+    <string name="save">Zapisz</string>
+    <string name="cancel">Anuluj</string>
+    <string name="delete">Usuń</string>
+    <string name="edit">Edytuj</string>
+    <string name="ok">OK</string>
+    <string name="yes">Tak</string>
+    <string name="no">Nie</string>
+    <string name="loading">Ładowanie...</string>
+    <string name="error">Błąd</string>
+    <string name="success">Sukces</string>
+    
+    <!-- Messages -->
+    <string name="book_added_successfully">Książka została dodana pomyślnie</string>
+    <string name="book_updated_successfully">Książka została zaktualizowana pomyślnie</string>
+    <string name="book_deleted_successfully">Książka została usunięta pomyślnie</string>
+    <string name="note_added_successfully">Notatka została dodana pomyślnie</string>
+    <string name="bookmark_added_successfully">Zakładka została dodana pomyślnie</string>
+    
 </resources>
