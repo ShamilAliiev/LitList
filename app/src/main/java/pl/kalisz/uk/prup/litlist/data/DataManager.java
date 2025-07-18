@@ -2,6 +2,7 @@ package pl.kalisz.uk.prup.litlist.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import pl.kalisz.uk.prup.litlist.model.Book;

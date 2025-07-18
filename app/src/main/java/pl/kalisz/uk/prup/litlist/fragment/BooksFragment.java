@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -19,6 +20,7 @@ import pl.kalisz.uk.prup.litlist.activity.BookDetailActivity;
 import pl.kalisz.uk.prup.litlist.adapter.BookAdapter;
 import pl.kalisz.uk.prup.litlist.data.DataManager;
 import pl.kalisz.uk.prup.litlist.model.Book;
+import pl.kalisz.uk.prup.litlist.model.BookList;
 
 import java.util.List;
 
@@ -75,11 +77,78 @@ public class BooksFragment extends Fragment {
 
                 @Override
                 public void onBookLongClick(Book book) {
-                    showDeleteConfirmationDialog(book);
+                    showBookOptionsDialog(book);
                 }
             });
             booksRecyclerView.setAdapter(bookAdapter);
         }
+    }
+
+    private void showBookOptionsDialog(Book book) {
+        String[] options = {"Dodaj do listy", "Usuń książkę"};
+        
+        new AlertDialog.Builder(requireContext())
+                .setTitle(book.getTitle())
+                .setItems(options, (dialog, which) -> {
+                    switch (which) {
+                        case 0:
+                            showAddToListDialog(book);
+                            break;
+                        case 1:
+                            showDeleteConfirmationDialog(book);
+                            break;
+                    }
+                })
+                .show();
+    }
+
+    private void showAddToListDialog(Book book) {
+        // Get all available lists
+        List<BookList> allLists = dataManager.getAllBookLists();
+        
+        if (allLists.isEmpty()) {
+            Toast.makeText(getContext(), "Brak dostępnych list", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        
+        // Create arrays for the dialog
+        String[] listNames = new String[allLists.size()];
+        boolean[] checkedItems = new boolean[allLists.size()];
+        
+        // Fill the arrays
+        for (int i = 0; i < allLists.size(); i++) {
+            BookList list = allLists.get(i);
+            listNames[i] = list.getName();
+            // Check if book is already in this list
+            checkedItems[i] = list.containsBook(book.getId());
+        }
+        
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Dodaj do list")
+                .setMultiChoiceItems(listNames, checkedItems, (dialog, which, isChecked) -> {
+                    // Handle individual item clicks
+                    checkedItems[which] = isChecked;
+                })
+                .setPositiveButton("Zapisz", (dialog, which) -> {
+                    // Process the selections
+                    for (int i = 0; i < allLists.size(); i++) {
+                        BookList list = allLists.get(i);
+                        boolean isCurrentlyInList = list.containsBook(book.getId());
+                        boolean shouldBeInList = checkedItems[i];
+                        
+                        if (shouldBeInList && !isCurrentlyInList) {
+                            // Add book to list
+                            dataManager.addBookToList(book.getId(), list.getId());
+                        } else if (!shouldBeInList && isCurrentlyInList) {
+                            // Remove book from list
+                            dataManager.removeBookFromList(book.getId(), list.getId());
+                        }
+                    }
+                    
+                    Toast.makeText(getContext(), "Listy zaktualizowane", Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("Anuluj", null)
+                .show();
     }
 
     private void showDeleteConfirmationDialog(Book book) {

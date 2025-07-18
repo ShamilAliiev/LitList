@@ -21,8 +21,11 @@ import pl.kalisz.uk.prup.litlist.adapter.NotesAdapter;
 import pl.kalisz.uk.prup.litlist.adapter.BookmarksAdapter;
 import pl.kalisz.uk.prup.litlist.data.DataManager;
 import pl.kalisz.uk.prup.litlist.model.Book;
+import pl.kalisz.uk.prup.litlist.model.BookList;
 import pl.kalisz.uk.prup.litlist.model.Note;
 import pl.kalisz.uk.prup.litlist.model.Bookmark;
+
+import java.util.List;
 
 public class BookDetailActivity extends AppCompatActivity {
 
@@ -158,8 +161,52 @@ public class BookDetailActivity extends AppCompatActivity {
     }
 
     private void showAddToListDialog() {
-        // For MVP, we'll just show a simple toast
-        Toast.makeText(this, "Funkcja dodawania do list będzie dostępna wkrótce", Toast.LENGTH_SHORT).show();
+        // Get all available lists
+        List<BookList> allLists = dataManager.getAllBookLists();
+        
+        if (allLists.isEmpty()) {
+            Toast.makeText(this, "Brak dostępnych list", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        
+        // Create arrays for the dialog
+        String[] listNames = new String[allLists.size()];
+        boolean[] checkedItems = new boolean[allLists.size()];
+        
+        // Fill the arrays
+        for (int i = 0; i < allLists.size(); i++) {
+            BookList list = allLists.get(i);
+            listNames[i] = list.getName();
+            // Check if book is already in this list
+            checkedItems[i] = list.containsBook(book.getId());
+        }
+        
+        new AlertDialog.Builder(this)
+                .setTitle("Dodaj do list")
+                .setMultiChoiceItems(listNames, checkedItems, (dialog, which, isChecked) -> {
+                    // Handle individual item clicks
+                    checkedItems[which] = isChecked;
+                })
+                .setPositiveButton("Zapisz", (dialog, which) -> {
+                    // Process the selections
+                    for (int i = 0; i < allLists.size(); i++) {
+                        BookList list = allLists.get(i);
+                        boolean isCurrentlyInList = list.containsBook(book.getId());
+                        boolean shouldBeInList = checkedItems[i];
+                        
+                        if (shouldBeInList && !isCurrentlyInList) {
+                            // Add book to list
+                            dataManager.addBookToList(book.getId(), list.getId());
+                        } else if (!shouldBeInList && isCurrentlyInList) {
+                            // Remove book from list
+                            dataManager.removeBookFromList(book.getId(), list.getId());
+                        }
+                    }
+                    
+                    Toast.makeText(this, "Listy zaktualizowane", Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("Anuluj", null)
+                .show();
     }
 
     private void showAddNoteDialog() {

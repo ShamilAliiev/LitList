@@ -6,13 +6,13 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <!-- Book Info Card -->
             <com.google.android.material.card.MaterialCardView
@@ -25,20 +25,19 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
                     <ImageView
                         android:id="@+id/book_cover"
-                        android:layout_width="120dp"
-                        android:layout_height="160dp"
+                        android:layout_width="80dp"
+                        android:layout_height="120dp"
                         android:scaleType="centerCrop"
-                        android:background="@drawable/book_placeholder"
-                        android:contentDescription="@string/book_details" />
+                        android:src="@drawable/book_placeholder" />
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginStart="16dp"
                         android:orientation="vertical">
 
@@ -47,33 +46,32 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Book Title"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/book_author"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="4dp"
                             android:text="Author Name"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textColor="?android:attr/textColorSecondary" />
 
                         <TextView
                             android:id="@+id/book_pages"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="4dp"
                             android:text="0 stron"
-                            android:textSize="14sp"
-                            android:textColor="?android:attr/textColorSecondary" />
+                            android:textSize="12sp" />
 
                         <ProgressBar
                             android:id="@+id/progress_bar"
                             style="?android:attr/progressBarStyleHorizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="8dp"
-                            android:layout_marginTop="12dp"
+                            android:layout_height="6dp"
+                            android:layout_marginTop="8dp"
                             android:max="100"
                             android:progress="0" />
 
@@ -83,8 +81,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:text="0 / 0 stron (0%)"
-                            android:textSize="12sp"
-                            android:textColor="?android:attr/textColorSecondary" />
+                            android:textSize="10sp" />
 
                     </LinearLayout>
 
@@ -127,15 +124,14 @@
                 android:layout_marginBottom="16dp"
                 android:text="Book description..."
                 android:textSize="14sp"
-                android:lineSpacingExtra="4dp"
-                android:visibility="gone" />
+                android:visibility="visible" />
 
             <!-- Notes Section -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/notes"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
 
@@ -151,7 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/bookmarks"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
 
@@ -166,18 +162,15 @@
 
     </ScrollView>
 
-    <!-- Main Floating Action Button -->
+    <!-- FABs -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_note"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:contentDescription="@string/add_note"
-        app:srcCompat="@drawable/ic_note"
-        app:fabSize="normal" />
+        app:srcCompat="@drawable/ic_note" />
 
-    <!-- Secondary FAB -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_bookmark"
         android:layout_width="wrap_content"
@@ -185,8 +178,6 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="80dp"
-        android:contentDescription="@string/add_bookmark"
-        app:srcCompat="@drawable/ic_bookmark"
-        app:fabSize="normal" />
+        app:srcCompat="@drawable/ic_bookmark" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
