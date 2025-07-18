@@ -24,7 +24,7 @@
         <item name="colorOnError">@color/warm_white</item>
         
         <!-- Status bar color -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@android:color/black</item>
         
         <!-- Additional Material Design 3 colors -->
         <item name="colorOutline">@color/ink_light</item>

@@ -1,5 +1,6 @@
 package pl.kalisz.uk.prup.litlist.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import pl.kalisz.uk.prup.litlist.R;
+import pl.kalisz.uk.prup.litlist.activity.ListDetailActivity;
 import pl.kalisz.uk.prup.litlist.adapter.BookListAdapter;
 import pl.kalisz.uk.prup.litlist.data.DataManager;
 import pl.kalisz.uk.prup.litlist.model.BookList;
@@ -76,7 +78,9 @@ public class ListsFragment extends Fragment {
     }
 
     private void onListClick(BookList bookList) {
-        // TODO: Navigate to list detail view
+        Intent intent = new Intent(getActivity(), ListDetailActivity.class);
+        intent.putExtra(ListDetailActivity.EXTRA_LIST_ID, bookList.getId());
+        startActivity(intent);
     }
 
     private void showCreateListDialog() {

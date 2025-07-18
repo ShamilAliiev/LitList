@@ -87,4 +87,9 @@
     <string name="note_added_successfully">Notatka została dodana pomyślnie</string>
     <string name="bookmark_added_successfully">Zakładka została dodana pomyślnie</string>
     
+    <!-- List Detail -->
+    <string name="books_in_list">Książki na liście</string>
+    <string name="no_books_in_list">Brak książek na tej liście</string>
+    <string name="add_book_to_list">Dodaj książkę do listy</string>
+    
 </resources>
