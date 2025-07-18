@@ -25,15 +25,15 @@
     <!-- Books Fragment -->
     <string name="books_title">Moje książki</string>
     <string name="add_book">Dodaj książkę</string>
-    <string name="no_books">Nie masz jeszcze żadnych książek. Dodaj pierwszą!</string>
+    <string name="no_books">Nie masz jeszcze żadnych książek.</string>
     <string name="search_books">Szukaj książek</string>
     
     <!-- Lists Fragment -->
     <string name="lists_title">Moje listy</string>
     <string name="default_lists">Domyślne listy</string>
-    <string name="custom_lists">Niestandardowe listy</string>
+    <string name="custom_lists">Twoje listy</string>
     <string name="create_list">Utwórz listę</string>
-    <string name="no_custom_lists">Nie masz jeszcze niestandardowych list.</string>
+    <string name="no_custom_lists">Nie masz jeszcze żadnych list.</string>
     
     <!-- Profile Fragment -->
     <string name="profile_title">Profil</string>

@@ -4,9 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +19,7 @@ import pl.kalisz.uk.prup.litlist.adapter.BookListAdapter;
 import pl.kalisz.uk.prup.litlist.data.DataManager;
 import pl.kalisz.uk.prup.litlist.model.BookList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListsFragment extends Fragment {
@@ -48,7 +52,7 @@ public class ListsFragment extends Fragment {
         customListsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         fabCreateList.setOnClickListener(v -> {
-            // TODO: Implement create custom list dialog
+            showCreateListDialog();
         });
     }
 
@@ -73,6 +77,33 @@ public class ListsFragment extends Fragment {
 
     private void onListClick(BookList bookList) {
         // TODO: Navigate to list detail view
+    }
+
+    private void showCreateListDialog() {
+        EditText editText = new EditText(getContext());
+        editText.setHint("Enter list name");
+        editText.setPadding(50, 40, 50, 40);
+
+        new AlertDialog.Builder(getContext())
+                .setTitle("Dodaj nową listę")
+                .setView(editText)
+                .setPositiveButton("Dodaj", (dialog, which) -> {
+                    String listName = editText.getText().toString().trim();
+                    if (!listName.isEmpty()) {
+                        createCustomList(listName);
+                    } else {
+                        Toast.makeText(getContext(), "Nazwa listy", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("Wstecz", (dialog, which) -> dialog.dismiss())
+                .show();
+    }
+
+    private void createCustomList(String listName) {
+        BookList newList = new BookList(listName);
+        dataManager.addBookList(newList);
+        loadLists(); // Refresh the lists
+        Toast.makeText(getContext(), "List \"" + listName + "\" created", Toast.LENGTH_SHORT).show();
     }
 
     @Override
