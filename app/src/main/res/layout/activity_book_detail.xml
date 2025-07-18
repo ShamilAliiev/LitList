@@ -166,26 +166,27 @@
 
     </ScrollView>
 
-    <!-- Floating Action Buttons -->
+    <!-- Main Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_note"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:layout_marginBottom="80dp"
         android:contentDescription="@string/add_note"
         app:srcCompat="@drawable/ic_note"
-        app:backgroundTint="?attr/colorSecondary" />
+        app:fabSize="normal" />
 
+    <!-- Secondary FAB -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_bookmark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="80dp"
         android:contentDescription="@string/add_bookmark"
         app:srcCompat="@drawable/ic_bookmark"
-        app:fabSize="mini" />
+        app:fabSize="normal" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
