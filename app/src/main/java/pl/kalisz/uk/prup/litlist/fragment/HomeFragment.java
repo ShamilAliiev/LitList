@@ -72,9 +72,17 @@ public class HomeFragment extends Fragment {
         // Show last 5 books added (for simplicity, we'll just show first 5)
         List<Book> recentBooks = allBooks.size() > 5 ? allBooks.subList(0, 5) : allBooks;
         
-        recentBooksAdapter = new BookAdapter(recentBooks, book -> {
-            // Handle book click - navigate to book details
-            // For now, we'll leave this empty
+        recentBooksAdapter = new BookAdapter(recentBooks, new BookAdapter.OnBookClickListener() {
+            @Override
+            public void onBookClick(Book book) {
+                // Handle book click - navigate to book details
+                // For now, we'll leave this empty
+            }
+
+            @Override
+            public void onBookLongClick(Book book) {
+                // Handle long click - do nothing in home fragment
+            }
         });
         recentBooksRecyclerView.setAdapter(recentBooksAdapter);
     }

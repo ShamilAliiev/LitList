@@ -19,10 +19,10 @@
         <ImageView
             android:id="@+id/book_cover"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:scaleType="centerCrop"
+            android:layout_height="191dp"
             android:background="@color/design_default_color_primary_variant"
-            android:contentDescription="@string/book_details" />
+            android:contentDescription="@string/book_details"
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/book_title"

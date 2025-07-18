@@ -2,6 +2,7 @@ package pl.kalisz.uk.prup.litlist.activity;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -245,9 +246,31 @@ public class BookDetailActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.book_detail_menu, menu);
+        return true;
+    }
+
+    private void showDeleteConfirmationDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Usuń książkę")
+                .setMessage("Czy na pewno chcesz usunąć książkę \"" + book.getTitle() + "\"? Ta akcja jest nieodwracalna.")
+                .setPositiveButton("Usuń", (dialog, which) -> {
+                    dataManager.deleteBook(book.getId());
+                    Toast.makeText(this, R.string.book_deleted_successfully, Toast.LENGTH_SHORT).show();
+                    finish();
+                })
+                .setNegativeButton("Anuluj", null)
+                .show();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             finish();
+            return true;
+        } else if (item.getItemId() == R.id.action_delete_book) {
+            showDeleteConfirmationDialog();
             return true;
         }
         return super.onOptionsItemSelected(item);

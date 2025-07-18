@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -64,9 +65,34 @@ public class BooksFragment extends Fragment {
             booksRecyclerView.setVisibility(View.VISIBLE);
             noBooksText.setVisibility(View.GONE);
             
-            bookAdapter = new BookAdapter(books, this::onBookClick);
+            bookAdapter = new BookAdapter(books, new BookAdapter.OnBookClickListener() {
+                @Override
+                public void onBookClick(Book book) {
+                    Intent intent = new Intent(getContext(), BookDetailActivity.class);
+                    intent.putExtra("book", book);
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onBookLongClick(Book book) {
+                    showDeleteConfirmationDialog(book);
+                }
+            });
             booksRecyclerView.setAdapter(bookAdapter);
         }
+    }
+
+    private void showDeleteConfirmationDialog(Book book) {
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Usuń książkę")
+                .setMessage("Czy na pewno chcesz usunąć książkę \"" + book.getTitle() + "\"?")
+                .setPositiveButton("Usuń", (dialog, which) -> {
+                    dataManager.deleteBook(book.getId());
+                    loadBooks(); // Refresh the list
+                    // You could also show a snackbar with undo option here
+                })
+                .setNegativeButton("Anuluj", null)
+                .show();
     }
 
     private void onBookClick(Book book) {

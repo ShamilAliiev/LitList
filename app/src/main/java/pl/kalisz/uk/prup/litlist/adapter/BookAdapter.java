@@ -21,6 +21,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     public interface OnBookClickListener {
         void onBookClick(Book book);
+        void onBookLongClick(Book book);
     }
 
     public BookAdapter(List<Book> books, OnBookClickListener listener) {
@@ -73,6 +74,17 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
                         onBookClickListener.onBookClick(books.get(position));
                     }
                 }
+            });
+
+            itemView.setOnLongClickListener(v -> {
+                if (onBookClickListener != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        onBookClickListener.onBookLongClick(books.get(position));
+                        return true;
+                    }
+                }
+                return false;
             });
         }
 
